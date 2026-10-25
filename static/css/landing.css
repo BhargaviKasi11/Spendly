@@ -1,0 +1,200 @@
+/* ------------------------------------------------------------------ */
+/* Landing hero                                                        */
+/* ------------------------------------------------------------------ */
+
+.lp-hero {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 5rem 2rem 5rem;
+    font-family: var(--font-body);
+}
+
+.lp-hero-inner {
+    text-align: center;
+    margin-bottom: 4.5rem;
+}
+
+.lp-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.55rem 1.5rem;
+    background: #e9f5ee;
+    border: 1px solid #b9dcc8;
+    border-radius: 999px;
+    color: #2f6e4c;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 3.25rem;
+}
+
+.lp-badge-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #3f9468;
+}
+
+.lp-title {
+    font-family: var(--font-body);
+    font-size: 4.75rem;
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    color: #111111;
+    margin-bottom: 2.25rem;
+}
+
+.lp-title-accent { color: #4a9a72; }
+
+.lp-subtitle {
+    max-width: 700px;
+    margin: 0 auto 3.5rem;
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: #666666;
+}
+
+.lp-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+}
+
+.lp-btn {
+    display: inline-block;
+    padding: 1.05rem 2.5rem;
+    background: #111111;
+    color: #ffffff;
+    border-radius: 12px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.lp-btn:hover { background: var(--accent); }
+
+/* Mock app window */
+
+.lp-window {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 1.6rem 1.75rem 1.75rem;
+    background: #f7f6f3;
+    border: 1px solid #e4e1da;
+    border-radius: 22px;
+}
+
+.lp-window-dots {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.lp-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+}
+
+.lp-dot-red    { background: #e8918f; }
+.lp-dot-yellow { background: #f2c66d; }
+.lp-dot-green  { background: #a9dcc3; }
+
+.lp-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.1rem;
+    margin-bottom: 1.1rem;
+}
+
+.lp-stat {
+    display: flex;
+    flex-direction: column;
+    padding: 1.3rem 1.6rem;
+    background: #ffffff;
+    border: 1px solid #e4e1da;
+    border-radius: 14px;
+}
+
+.lp-stat-label {
+    font-size: 1.1rem;
+    color: #8a8a8a;
+    margin-bottom: 0.6rem;
+}
+
+.lp-stat-value {
+    font-size: 2.1rem;
+    font-weight: 500;
+    color: #111111;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.lp-stat-note {
+    font-size: 1.1rem;
+    color: #a0a0a0;
+}
+
+.lp-note-up   { color: #d0453f; }
+.lp-note-good { color: #3f9468; }
+
+.lp-cats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 1.3rem 1.6rem;
+    background: #ffffff;
+    border: 1px solid #e4e1da;
+    border-radius: 14px;
+}
+
+.lp-cat-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.lp-cat-name {
+    font-size: 1.25rem;
+    color: #2d2d2d;
+    text-align: center;
+}
+
+.lp-cat-track {
+    height: 13px;
+    background: #efede8;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.lp-cat-bar {
+    height: 100%;
+    border-radius: 999px;
+}
+
+.lp-bar-food   { background: #e8a440; }
+.lp-bar-travel { background: #4a85d8; }
+.lp-bar-bills  { background: #7f72d3; }
+
+/* Responsive */
+
+@media (max-width: 900px) {
+    .lp-title { font-size: 3.25rem; }
+    .lp-subtitle { font-size: 1.25rem; }
+    .lp-btn { font-size: 1.1rem; padding: 0.9rem 1.75rem; }
+}
+
+@media (max-width: 600px) {
+    .lp-hero { padding: 3rem 1rem; }
+    .lp-hero-inner { margin-bottom: 3rem; }
+    .lp-badge { font-size: 0.9rem; padding: 0.45rem 1rem; margin-bottom: 2rem; }
+    .lp-title { font-size: 2.4rem; }
+    .lp-subtitle { font-size: 1.05rem; margin-bottom: 2.25rem; }
+    .lp-window { padding: 1.1rem; }
+    .lp-stats { grid-template-columns: 1fr; }
+    .lp-cat-row { grid-template-columns: 60px 1fr; gap: 1rem; }
+    .lp-cat-name { font-size: 1rem; }
+}
