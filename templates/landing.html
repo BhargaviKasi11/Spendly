@@ -4,6 +4,61 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+<style>
+    .video-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        background: rgba(15, 15, 15, 0.75);
+    }
+
+    .video-modal.is-open { display: flex; }
+
+    .video-modal-dialog {
+        position: relative;
+        width: 100%;
+        max-width: 900px;
+    }
+
+    .video-modal-close {
+        position: absolute;
+        top: -2.75rem;
+        right: 0;
+        width: 2.25rem;
+        height: 2.25rem;
+        border: none;
+        border-radius: 50%;
+        background: #ffffff;
+        color: #111111;
+        font-size: 1.5rem;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    .video-modal-close:hover { background: #e8f0eb; }
+
+    .video-modal-frame {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        background: #000000;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .video-modal-frame iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    body.modal-open { overflow: hidden; }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -24,7 +79,7 @@
         </p>
         <div class="lp-actions">
             <a href="{{ url_for('register') }}" class="lp-btn">Create free account</a>
-            <a href="#" class="lp-btn">See how it works</a>
+            <a href="#" class="lp-btn" id="how-it-works-btn" aria-haspopup="dialog">See how it works</a>
         </div>
     </div>
 
@@ -104,4 +159,57 @@
     </div>
 </section>
 
+<!-- Placeholder video — replace the URL in data-video-src -->
+<div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-label="How Spendly works"
+     data-video-src="https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ">
+    <div class="video-modal-dialog">
+        <button type="button" class="video-modal-close" id="video-modal-close" aria-label="Close video">&times;</button>
+        <div class="video-modal-frame">
+            <iframe id="video-modal-iframe" title="How Spendly works"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    (function () {
+        var openBtn = document.getElementById("how-it-works-btn");
+        var modal = document.getElementById("video-modal");
+        var closeBtn = document.getElementById("video-modal-close");
+        var iframe = document.getElementById("video-modal-iframe");
+
+        function openModal(e) {
+            e.preventDefault();
+            // Load the video only when opened, with autoplay
+            iframe.src = modal.dataset.videoSrc + "?autoplay=1&rel=0";
+            modal.classList.add("is-open");
+            document.body.classList.add("modal-open");
+            closeBtn.focus();
+        }
+
+        function closeModal() {
+            modal.classList.remove("is-open");
+            document.body.classList.remove("modal-open");
+            // Clearing the src unloads the player so the video stops
+            iframe.src = "";
+            openBtn.focus();
+        }
+
+        openBtn.addEventListener("click", openModal);
+        closeBtn.addEventListener("click", closeModal);
+
+        // Click on the dark overlay (outside the video) closes the modal
+        modal.addEventListener("click", function (e) {
+            if (e.target === modal) closeModal();
+        });
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+        });
+    })();
+</script>
 {% endblock %}
